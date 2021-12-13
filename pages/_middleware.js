@@ -5,6 +5,7 @@ export async function middleware(req) {
   const secret = process.env.JWT_SECRET;
   const { pathname } = req.nextUrl;
   const token = getToken({ req, secret }).then((token) => {
+    console.log('token is ' + token);
     if (token || pathname.includes('/api/auth')) {
       return NextResponse.next();
     }
@@ -16,5 +17,4 @@ export async function middleware(req) {
   });
 
   console.log('secret is ' + secret);
-  console.log('token is ' + token);
 }
