@@ -63,7 +63,7 @@ export default function Sidebar() {
         </button>
         <hr className='border-t-[0.1px] border-gray-900' />
         {/* {playlists} */}
-        {playlists.map((playlist) => {
+        {playlists?.map((playlist) => {
           return (
             <p
               key={playlist.id}
