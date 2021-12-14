@@ -1,7 +1,6 @@
 import { getProviders, signIn } from 'next-auth/react';
 
 export default function Login({ providers }) {
-  console.log(Object.values(providers));
   return (
     <div className='flex flex-col items-center justify-center bg-black min-h-screen w-full'>
       <img
@@ -27,6 +26,8 @@ export default function Login({ providers }) {
 
 export async function getServerSideProps() {
   const providers = await getProviders();
+
+  console.log(providers);
 
   return {
     props: {
