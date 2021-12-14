@@ -1,6 +1,6 @@
-import { signIn } from 'next-auth/react';
+import { getProviders, signIn } from 'next-auth/react';
 
-export default function Login() {
+export default function Login({ providers }) {
   return (
     <div className='flex flex-col items-center justify-center bg-black min-h-screen w-full'>
       <img
@@ -8,27 +8,28 @@ export default function Login() {
         className='w-52 mb-5'
         alt=''
       />
-
-      <div>
-        <button
-          className='bg-green-500 text-white p-5 rounded-full capitalize'
-          onClick={() => signIn('spotify', { callbackUrl: '/' })}
-        >
-          login with spotify
-        </button>
-      </div>
+      {Object.values(providers).map((provider) => {
+        return (
+          <div key={provider.name}>
+            <button
+              className='bg-green-500 text-white p-5 rounded-full capitalize'
+              onClick={() => signIn(provider.id, { callbackUrl: '/' })}
+            >
+              login with {provider.name}
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 }
 
-// export async function getServerSideProps() {
-//   const providers = await getProviders();
+export async function getServerSideProps() {
+  const providers = await getProviders();
 
-//   console.log(providers);
-
-//   return {
-//     props: {
-//       providers,
-//     },
-//   };
-// }
+  return {
+    props: {
+      providers,
+    },
+  };
+}
