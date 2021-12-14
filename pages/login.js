@@ -8,20 +8,18 @@ export default function Login({ providers }) {
         className='w-52 mb-5'
         alt=''
       />
-      {providers
-        ? Object.values(providers).map((provider) => {
-            return (
-              <div key={provider.name}>
-                <button
-                  className='bg-green-500 text-white p-5 rounded-full capitalize'
-                  onClick={() => signIn(provider.id, { callbackUrl: '/' })}
-                >
-                  login with {provider.name}
-                </button>
-              </div>
-            );
-          })
-        : ''}
+      {Object.values(providers).map((provider) => {
+        return (
+          <div key={provider.name}>
+            <button
+              className='bg-green-500 text-white p-5 rounded-full capitalize'
+              onClick={() => signIn(provider.id, { callbackUrl: '/' })}
+            >
+              login with {provider.name}
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 }

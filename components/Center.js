@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { shuffle } from 'lodash';
-import { signOut, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -61,12 +61,11 @@ export default function Center() {
           </div>
         ) : (
           <div
+            onClick={signIn}
             className='flex items-center text-white
           bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-2 px-4 capitalize'
           >
-            <Link href={'/login'}>
-              <h2>log in to your account</h2>
-            </Link>
+            <h2>log in to your account</h2>
           </div>
         )}
       </header>
