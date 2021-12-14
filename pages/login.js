@@ -8,7 +8,7 @@ export default function Login({ providers }) {
         className='w-52 mb-5'
         alt=''
       />
-      {Object.values(providers).map((provider) => {
+      {Object.values(providers)?.map((provider) => {
         return (
           <div key={provider.name}>
             <button
